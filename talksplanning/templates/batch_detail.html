@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+Batch : {{batch}}
+
+<div>
+	<ul>
+		<li> theme : {{batch.theme}}</li>
+		<li> description : {{batch.description}}</li>
+		<li> published : {{batch.published}}</li>
+		<li> interne : {{batch.interne}}</li>
+		<li> responsable {{batch.responsable}}
+		<li> participants : <ul>
+			{% for p in batch.batch.participants.all %}
+				<li>{{p}}</li>
+			{% endfor %}
+		</ul>
+	</ul>
+<div>
+{% endblock %}
