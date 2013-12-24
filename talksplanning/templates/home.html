@@ -2,35 +2,6 @@
 
 {% block content %}
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-	<title>HaumTalks - Conférences Libres du HAUM</title>
-
-
-    <link rel="stylesheet" href="static/nature.css" type="text/css" />
-    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
-
-  </head>
-  <body>
-	<div style="background-color: #6BA81E; text-align: center; padding: 15px 15px 15px 15px">
-		<a href="#">
-			<img src="static/haum.png" border=0 alt="HAUM"/>
-		</a>
-	</div>
-
-
-  <div class="document">
-    <div class="documentwrapper">
-      <div class="bodywrapper">
-        <div class="body">
-          <div class="section" id="haum-hackerspace-de-l-universite-du-maine">
-            <h1>HaumTalks - Conférences Libres du HAUM<a class="headerlink" href="#haum-hackerspace-de-l-universite-du-maine" title="Permalink to this headline">¶</a></h1>
             <h2>Liste des conférences</h2>
             {% for b in batches %}
             <h4>{{b.theme}}</h4>
@@ -51,29 +22,11 @@
               </ul>
             </ul>
             {% endfor %}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="sphinxsidebar">
-      <div class="sphinxsidebarwrapper">
-        <h3>Liste des conférences</h3>
-        {% for b in batches %}
-        <ul>{{b.theme}}</ul>
-        {% endfor %}
-      </div>
-    </div>
+{% endblock %}
 
-    <div class="clearer"></div>
-  </div>
-  <div class="related">
-    <h3>Navigation</h3>
-    <li><a href="#">HaumTalks</a></li>
-  </div>
-  <div class="footer">
-    &copy; Copyright 2013, HAUM.
-  </div>
-
-  </body>
-</html>
+{% block sidebar %}
+	<h3>Liste des conférences</h3>
+	{% for b in batches %}
+	<ul>{{b.theme}}</ul>
+	{% endfor %}
 {% endblock %}
