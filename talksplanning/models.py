@@ -27,7 +27,7 @@ class Talk(models.Model):
 
     titre = models.CharField(max_length=200)
     description = models.TextField()
-    url = models.URLField()
+    url = models.CharField(max_length=200, null=True, blank=True)
 
     speaker = models.ForeignKey('Hacker')
     batch = models.ForeignKey('Batch')
