@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>{{batch.theme}}</h1>
+
+  <ul>
+    <li> Responsable :  {{batch.responsable|upper}} {% if talk.speaker.haum %}(Haum){% endif %}
+  </ul>
+
+  <p>{{batch.description}}</p>
+
+  <h2>Soumission d'un talk</h2>
+
+  <p>Formulaire pour proposer un talk.</p>
+
+{% endblock %}
+
+{% block sidebar %}
+	<h3><a href={% url 'batch_detail' batch.id %}>Revenir à la conférence</a></h3>
+{% endblock %}

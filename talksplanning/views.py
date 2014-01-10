@@ -17,8 +17,22 @@ def batch_detail(request, id):
     talks = batch.talk_set.all()
     auditeurs = batch.participants.filter(hackerbatch__auditeur=True)
 
-
     return render_to_response('batch_detail.html', {'batch':batch, 'talks':talks, 'auditeurs':auditeurs})
+
+def batch_form(request, batch_id):
+    """ Formulaire inscription à un talk """
+
+    batch = get_object_or_404(Batch, pk=batch_id)
+
+    return render_to_response('batch_form.html', {'batch':batch})
+
+def talk_form(request, batch_id):
+    """ Formulaire inscription à un talk """
+
+    batch = get_object_or_404(Batch, pk=batch_id)
+
+    return render_to_response('talk_form.html', {'batch':batch})
+
 
 def add_talk(request, batch_id):
     """ Ajoute un talk à un batch """
