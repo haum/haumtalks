@@ -19,7 +19,7 @@ def batch_detail(request, id):
     """ Details à propos d'un batch """
 
     batch = get_object_or_404(Batch, pk=id)
-    talks = batch.talk_set.all()
+    talks = batch.talk_set.filter(approved=True)
     auditeurs = batch.participants.filter(hackerbatch__auditeur=True)
     form = ListenerForm()
 

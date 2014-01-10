@@ -33,6 +33,9 @@ class Talk(models.Model):
     description = models.TextField()
     url = models.CharField("URL", max_length=200, null=True, blank=True)
 
+    # modération
+    approved = models.BooleanField("Approuvé", default=False)
+
     speaker = models.ForeignKey('Hacker')
     batch = models.ForeignKey('Batch')
 
