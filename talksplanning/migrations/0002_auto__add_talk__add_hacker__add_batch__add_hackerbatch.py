@@ -13,7 +13,7 @@ class Migration(SchemaMigration):
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('titre', self.gf('django.db.models.fields.CharField')(max_length=200)),
             ('description', self.gf('django.db.models.fields.TextField')()),
-            ('url', self.gf('django.db.models.fields.URLField')(max_length=200)),
+            ('url', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
             ('speaker', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['talksplanning.Hacker'])),
             ('batch', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['talksplanning.Batch'])),
         ))
@@ -135,7 +135,7 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'speaker': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['talksplanning.Hacker']"}),
             'titre': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'url': ('django.db.models.fields.URLField', [], {'max_length': '200'})
+            'url': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'})
         }
     }
 
