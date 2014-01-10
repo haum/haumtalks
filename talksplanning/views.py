@@ -21,8 +21,15 @@ def batch_detail(request, id):
     batch = get_object_or_404(Batch, pk=id)
     talks = batch.talk_set.all()
     auditeurs = batch.participants.filter(hackerbatch__auditeur=True)
+    form = ListenerForm()
 
-    return render_to_response('batch_detail.html', {'batch':batch, 'talks':talks, 'auditeurs':auditeurs})
+    return render_to_response('batch_detail.html',
+                              {
+                                  'batch':batch,
+                                  'talks':talks,
+                                  'auditeurs':auditeurs,
+                                  'form':form},
+                             context_instance=RequestContext(request))
 
 def batch_form(request, batch_id):
     """ Formulaire inscription à un talk """
