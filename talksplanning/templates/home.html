@@ -2,31 +2,37 @@
 
 {% block content %}
 
-            <h2>Liste des conférences</h2>
-            {% for b in batches %}
-            <h4>{{b.theme}}</h4>
-            <ul>
-              <li> description : <p>{{b.description}}</p></li>
-              <li> published : {{b.published}}</li>
-              <li> interne : {{b.interne}}</li>
-              <li> responsable : {{b.responsable}}
-              <li> orateurs : <ul>
-                {% for o in orateurs %}
-                <li>{{o}}</li>
-                {% endfor %}
-              </ul>
-              <li> participants : <ul>
-                {% for p in auditeurs %}
-                <li>{{p}}</li>
-                {% endfor %}
-              </ul>
-            </ul>
-            {% endfor %}
+  <h1>HaumTalks - Conférences Libres du HAUM<a class="headerlink" href="#haum-hackerspace-de-l-universite-du-maine" title="Permalink to this headline">¶</a></h1>
+
+  <h2>Késako ?</h2>
+  <p>
+    Dans son objectif de promouvoir la diffusion de connaisance et les rencontres entre personnes passionnées de nouvelles technologies, de hacks, de DIY, etc. le HAUM organise depuis 2014 des conférences libres. <br /><br />
+    Le principe est simple : les conférences libres accessibles à tous regroupent des exposés (ou talks) proposés par les membres du Haum et des personnes extérieures à l'association désireuses de faire découvrir une technologie ou une connaissance.
+    Les thèmes abordés sont libres (nous essaierons de les régrouper de sorte que les thématiques proches soient abordées dans une même conférence) et chaque speaker dispose de 10 à 15 min pour son exposé.
+    Chaque conférence se terminera par un échange entre speakers et auditeurs, quant aux thèmes abordés durant la soirée. <br /><br />
+
+    Ci-après sont listées les conférences à venir, et pour lesquelles vous pouvez librement vous inscrire sur la ou les thématiques abordées vous intéressent.
+  </p>
+
+  {% for b in batches %}
+    <!-- Si un conférence est publiée et non interne au Haum, on l'affiche -->
+    {% if b.published and b.interne == False %}
+      <h4><a href={% url 'batch_detail' b.id %}>{{b.theme}}</a></h4>
+      <p>{{b.description}}</p>
+      <ul>
+        <li> Date : {{b.date}}
+        <li> Responsable : {{b.responsable}} {% if b.responsable.haum %}(Haum){% endif %}
+        <li> Talks : #TODO
+        </ul>
+    {% endif %}
+  {% endfor %}
 {% endblock %}
 
 {% block sidebar %}
-	<h3>Liste des conférences</h3>
-	{% for b in batches %}
-	<ul>{{b.theme}}</ul>
-	{% endfor %}
+  <h3>Liste des conférences</h3>
+  {% for b in batches %}
+    {% if b.published and b.interne == False %}
+      <ul><a href={% url 'batch_detail' b.id %}>{{b.theme}}</a></ul>
+    {% endif %}
+  {% endfor %}
 {% endblock %}

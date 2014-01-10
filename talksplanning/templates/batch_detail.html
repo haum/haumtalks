@@ -2,20 +2,37 @@
 
 {% block content %}
 
-Batch : {{batch}}
+  <h1>{{batch}}</h1>
 
-<div>
-	<ul>
-		<li> theme : {{batch.theme}}</li>
-		<li> description : {{batch.description}}</li>
-		<li> published : {{batch.published}}</li>
-		<li> interne : {{batch.interne}}</li>
-		<li> responsable {{batch.responsable}}
-		<li> participants : <ul>
-			{% for p in batch.batch.participants.all %}
-				<li>{{p}}</li>
-			{% endfor %}
-		</ul>
-	</ul>
-<div>
+  <p>{{batch.description}}</p>
+
+  <ul>
+    <li> Responsable :  {{batch.responsable|upper}} {% if talk.speaker.haum %}(Haum){% endif %}
+    <li> Auditeur(s) inscrit(s) : {{batch.participants.pseudo}}
+  </ul>
+
+  {% for t in talks %}
+    <div id="#{{t.titre|lower|cut:" "}}">
+      <h4>Talk n°{{forloop.counter}} : {{t.titre}}</h4>
+      <ul>
+        <li> Speaker : {{t.speaker}}
+      </ul>
+      <p>{{t.description}}</p>
+    </div>
+  {% endfor %}
+{% endblock %}
+
+{% block sidebar %}
+	<h3><a href={% url 'home' %}>HaumTalks</a></h3>
+    <ul>
+      <li><a href={% url 'batch_form' batch.id %}>Participer à la conférence</a>
+      <li><a href={% url 'talk_form' batch.id %}>Proposer un talk</a>
+    </ul>
+	<h3>Liste des talks</h3>
+    <ul>
+      {% for t in talks %}
+        <li><a href="#{{t.titre|lower|cut:" "}}">{{t.titre}}</a>
+      {% endfor %}
+    </ul>
+
 {% endblock %}
