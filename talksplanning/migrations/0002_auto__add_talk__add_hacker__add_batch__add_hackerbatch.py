@@ -14,6 +14,7 @@ class Migration(SchemaMigration):
             ('titre', self.gf('django.db.models.fields.CharField')(max_length=200)),
             ('description', self.gf('django.db.models.fields.TextField')()),
             ('url', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
+            ('approved', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('speaker', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['talksplanning.Hacker'])),
             ('batch', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['talksplanning.Batch'])),
         ))
@@ -130,6 +131,7 @@ class Migration(SchemaMigration):
         },
         u'talksplanning.talk': {
             'Meta': {'object_name': 'Talk'},
+            'approved': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'batch': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['talksplanning.Batch']"}),
             'description': ('django.db.models.fields.TextField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
