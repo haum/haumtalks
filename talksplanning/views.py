@@ -56,7 +56,7 @@ def talk_form(request, batch_id):
         if not f.is_valid():
             return render_to_response('talk_form.html', {'batch':batch, 'form': f}, context_instance=RequestContext(request))
         else:
-            talks = f.save(batch)
+            talk = f.save(batch)
             return HttpResponseRedirect(reverse('batch_detail', args=(batch.id,)))
     else:
         form = TalkProposalForm()
