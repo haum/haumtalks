@@ -35,6 +35,7 @@ class TalkProposalForm(forms.ModelForm):
         talk.titre = cd['titre']
         talk.description = cd['description']
         talk.url = cd.get('url') # may be None
+        talk.approved = True # TODO: change that when moderation will be set
         talk.speaker = speaker
         talk.batch = batch
         talk.save()
