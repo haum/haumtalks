@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from talksplanning.models import Batch, Talk, Hacker
-from talksplanning.forms import TalkProposalForm
+from talksplanning.forms import TalkProposalForm, ListenerForm
 
 def home(request):
     """ Homepage """
@@ -29,7 +29,15 @@ def batch_form(request, batch_id):
 
     batch = get_object_or_404(Batch, pk=batch_id)
 
-    return render_to_response('batch_form.html', {'batch':batch})
+    if request.method == 'POST':
+        f = ListenerForm(request.POST)
+        if not f.is_valid():
+            return render_to_response('batch_detail.html', {'batch':batch, 'form': f}, context_instance=RequestContext(request))
+        else:
+            listener = f.save(batch)
+            return HttpResponseRedirect(reverse('batch_detail', args=(batch.id,)))
+    else:
+        return HttpResponseRedirect(reverse('batch_detail', args=(batch.id,)))
 
 def talk_form(request, batch_id):
     """ Formulaire inscription à un talk """
