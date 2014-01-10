@@ -6,10 +6,23 @@
 
   <p>{{batch.description}}</p>
 
+  <p>Organisé par :  {{batch.responsable|upper}} {% if talk.speaker.haum %}(Haum){% endif %}</p>
+
+  <h3>Assister à la conférence</h3>
+  <form method='post' action="{% url 'batch_form' batch.id %}">{% csrf_token %}
+	  {{ form.as_p }}
+	  <input type=submit value="S'inscrire"/>
+  </form>
+
   <ul>
-    <li> Responsable :  {{batch.responsable|upper}} {% if talk.speaker.haum %}(Haum){% endif %}
-    <li> Auditeur(s) inscrit(s) : {{batch.participants.pseudo}}
+    {% for p in batch.participants.all %}
+    <li> Auditeur(s) inscrit(s) : {{p.pseudo}}</li>
+    {% empty %}
+    <li>Aucun auditeur inscrit pour l'instant... Vous peut être ?</li>
+    {% endfor %}
   </ul>
+
+  <h3>Talks</h3>
 
   {% for t in talks %}
     <div id="#{{t.titre|lower|cut:" "}}">
@@ -36,3 +49,7 @@
     </ul>
 
 {% endblock %}
+
+{#
+vim: ts=2 sw=2 et autoindent
+#}
