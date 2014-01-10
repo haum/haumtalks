@@ -14,8 +14,7 @@ class TalkProposalForm(forms.ModelForm):
 
     hacker_name = forms.CharField()
     hacker_mail = forms.EmailField()
-    hacker_haum = forms.BooleanField()
-    
+    hacker_haum = forms.BooleanField(required=False)
 
     def save(self, batch):
 
