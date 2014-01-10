@@ -2,6 +2,7 @@
 from django.shortcuts import render_to_response, get_object_or_404
 
 from talksplanning.models import Batch, Talk, Hacker
+from talksplanning.forms import TalkProposalForm
 
 def home(request):
     """ Homepage """
@@ -30,8 +31,8 @@ def talk_form(request, batch_id):
     """ Formulaire inscription à un talk """
 
     batch = get_object_or_404(Batch, pk=batch_id)
-
-    return render_to_response('talk_form.html', {'batch':batch})
+    form = TalkProposalForm()
+    return render_to_response('talk_form.html', {'batch':batch, 'form': form})
 
 
 def add_talk(request, batch_id):
