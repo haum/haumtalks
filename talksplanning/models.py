@@ -43,7 +43,7 @@ class Hacker(models.Model):
 
     pseudo = models.CharField(max_length=50)
     mail = models.EmailField()
-    haum = models.BooleanField(default=False)
+    haum = models.BooleanField(default=False, blank=True)
 
     def __unicode__(self):
         return self.pseudo
