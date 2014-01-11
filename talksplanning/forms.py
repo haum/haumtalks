@@ -40,9 +40,6 @@ class TalkProposalForm(forms.ModelForm):
         talk.batch = batch
         talk.save()
 
-        # == Link Hacker <-> Batch ==
-        HackerBatch(orateur=True, batch=batch, hacker=speaker).save()
-
         return talk
 
 class ListenerForm(forms.ModelForm):

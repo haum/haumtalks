@@ -42,6 +42,13 @@ class Talk(models.Model):
     def __unicode__(self):
         return self.titre
 
+    def save(self):
+        super(Talk, self).save()
+
+        # == Link Hacker <-> Batch ==
+        HackerBatch(orateur=True, batch=self.batch, hacker=self.speaker).save()
+
+
 
 class Hacker(models.Model):
     """
