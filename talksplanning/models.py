@@ -60,6 +60,9 @@ class Hacker(models.Model):
     def __unicode__(self):
         return self.pseudo
 
+    def batches_count(self):
+        return HackerBatch.objects.filter(hacker=self).count()
+
 
 class HackerBatch(models.Model):
     """
