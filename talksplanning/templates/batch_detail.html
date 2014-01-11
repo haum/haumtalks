@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load talkstags %}
+
 {% block content %}
 
   <h1>{{batch}}</h1>
@@ -46,8 +48,7 @@
 {% endblock %}
 
 {% block sidebar %}
-	<h3><a href={% url 'home' %}>HaumTalks</a></h3>
-  <br />
+  {% batch_list %}
 	<h3>Liste des talks</h3>
     <ul>
       {% for t in talks %}

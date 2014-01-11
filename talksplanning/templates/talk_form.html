@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load talkstags %}
+
 {% block content %}
 
   <h1>{{batch.theme}}</h1>
@@ -26,4 +28,5 @@
 
 {% block sidebar %}
 	<h3><a href={% url 'batch_detail' batch.id %}>Revenir à la conférence</a></h3>
+	{% batch_list %}
 {% endblock %}

@@ -5,7 +5,7 @@
   <h1>{{batch.theme}}</h1>
 
   <ul>
-    <li> Responsable :  {{batch.responsable|upper}} {% if talk.speaker.haum %}(Haum){% endif %}
+    <li> Responsable :  {{batch.responsable|capitalize}} {% if talk.speaker.haum %}(Haum){% endif %}
   </ul>
 
   <p>{{batch.description}}</p>
