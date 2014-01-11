@@ -4,15 +4,18 @@
 
   <h1>{{batch.theme}}</h1>
 
-  <ul>
-    <li> Responsable :  {{batch.responsable|upper}} {% if talk.speaker.haum %}(Haum){% endif %}
-  </ul>
-
   <p>{{batch.description}}</p>
+
+  <p>Organisé par :  {{batch.responsable|upper}} {% if talk.speaker.haum %}(Haum){% endif %}</p>
 
   <h2>Soumission d'un talk</h2>
 
-  <p>Formulaire pour proposer un talk.</p>
+  <p>
+  Les sujets sont libres mais nous vous rappelons que la durée d'un talk est fixée par défaut à 15min max.<br />
+  Une fois votre sujet soumis, celui-ci apparaîtra dans la liste des talks de la conférence après avoir été validé par le responsable de la conférence.
+  </p>
+
+  <p><b>Formulaire de soumission :</b></p>
 
   <form action="" method="post">{% csrf_token %}
 	  {{form.as_p}}
