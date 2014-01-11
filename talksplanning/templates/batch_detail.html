@@ -9,6 +9,9 @@
   <p>Organisé par :  {{batch.responsable|upper}} {% if talk.speaker.haum %}(Haum){% endif %}</p>
 
   <h3>Assister à la conférence</h3>
+
+  <p>Pour assister à la conférence, veuillez communiquer votre nom/pseudo ainsi que votre adresse mail (cette dernière ne sera pas communiquée, elle nous servira uniquement à vous prévenir en cas de changement concernant la conférence).</p>
+
   <form method='post' action="{% url 'batch_form' batch.id %}">{% csrf_token %}
 	  {{ form.as_p }}
 	  <input type=submit value="S'inscrire"/>
@@ -22,7 +25,14 @@
     {% endfor %}
   </ul>
 
-  <h3>Talks</h3>
+  <h3>TALKS associés à cette conférence</h3>
+
+  <p>
+  Ci-après la liste des talks associés à cette conférences.<br /><br />
+
+  <b>Proposer un talk ?</b><br />
+  Si vous souhaitez proposer un talk sur un sujet de votre choix, vous pouvez le faire via notre <b><a href={% url 'talk_form' batch.id %}>formulaire de soumission</a></b>.
+  </p>
 
   {% for t in talks %}
     <div id="#{{t.titre|lower|cut:" "}}">
@@ -37,10 +47,7 @@
 
 {% block sidebar %}
 	<h3><a href={% url 'home' %}>HaumTalks</a></h3>
-    <ul>
-      <li><a href={% url 'batch_form' batch.id %}>Participer à la conférence</a>
-      <li><a href={% url 'talk_form' batch.id %}>Proposer un talk</a>
-    </ul>
+  <br />
 	<h3>Liste des talks</h3>
     <ul>
       {% for t in talks %}
