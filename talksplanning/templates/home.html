@@ -21,9 +21,9 @@
         <h4><a href={% url 'batch_detail' b.id %}>{{b.theme}}</a></h4>
         <p>{{b.description}}</p>
         <ul>
-          <li> Date : {{b.date}}
-          <li> Organisateur : {{b.responsable|upper}}
-          <li> Talks : {% if b.talk_set.all %} {{b.talk_set.all|join:", "}} {% else %} 0 talk pour le moment.{% endif %}
+          <li> {{b.date|date:"\L\e l j F à G\h"}}{% ifnotequal b.date.minute 0%}{{b.date|date:"i"}}{% endifnotequal %}
+          <li> Organisateur : {{b.responsable|capfirst}}
+          {% if b.talk_set.all %}<li> Talks : {{b.talk_set.all|join:", "}}{% endif %}
         </ul>
       </div>
     {% endif %}
