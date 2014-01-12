@@ -5,30 +5,32 @@ from django.forms.models import modelformset_factory, inlineformset_factory
 
 from talksplanning.models import Talk, Hacker, HackerBatch
 
+class HackerForm(forms.ModelForm):
+
+    class Meta:
+        model = Hacker
+
+    def save(self):
+
+        return Hacker.objects.get_or_create(
+            pseudo=self.cleaned_data['pseudo'],
+            mail=self.cleaned_data['mail'],
+            haum=self.cleaned_data.get('haum') # can be blank
+        )[0] # indice comme pour le TalkProposalForm
+
+
 class TalkProposalForm(forms.ModelForm):
     """ Form to propose a talk """
 
     class Meta:
         model = Talk
-        fields = ['titre', 'description', 'url']
+        fields = ['titre', 'url', 'description']
 
-    hacker_name = forms.CharField()
-    hacker_mail = forms.EmailField()
-    hacker_haum = forms.BooleanField(required=False)
 
-    def save(self, batch):
+    def save(self, batch, speaker):
 
         # shorter is better
         cd = self.cleaned_data
-
-        # == Hacker creation ==
-        # 0 indice to get the Hacker instance
-        speaker = Hacker.objects.get_or_create(
-            pseudo = cd['hacker_name'],
-            mail = cd['hacker_mail'],
-            haum = cd['hacker_haum']
-        )[0]
-        batch = batch
 
         # == Talk ==
         talk = Talk()
@@ -42,20 +44,11 @@ class TalkProposalForm(forms.ModelForm):
 
         return talk
 
-class ListenerForm(forms.ModelForm):
+class ListenerForm(HackerForm):
     """ Form to register as a litener """
-
-    class Meta:
-        model = Hacker
 
     def save(self, batch):
 
-        listener = Hacker.objects.get_or_create(
-            pseudo=self.cleaned_data['pseudo'],
-            mail=self.cleaned_data['mail'],
-            haum=self.cleaned_data.get('haum') # can be blank
-        )[0] # indice comme pour le TalkProposalForm
-
+        listener = super(HackerForm, self).save()
         HackerBatch(batch=batch, hacker=listener).save()
-
         return listener
