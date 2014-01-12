@@ -30,8 +30,10 @@ class Talk(models.Model):
     """
 
     titre = models.CharField(max_length=200)
-    description = models.TextField()
     url = models.CharField("URL", max_length=200, null=True, blank=True)
+
+    description = models.TextField()
+    description.help_text = "Présentez rapidement le talk"
 
     # modération
     approved = models.BooleanField("Approuvé", default=False)
