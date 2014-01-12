@@ -16,8 +16,8 @@
 
   {% for b in batches %}
     <!-- Si un conférence est publiée et non interne au Haum, on l'affiche -->
+      <div id="#batch_{{b.id}}">
     {% if b.published and b.interne == False %}
-      <div id="#{{b.id|lower|cut:" "}}">
         <h4><a href={% url 'batch_detail' b.id %}>{{b.theme}}</a></h4>
         <p>{{b.description}}</p>
         <ul>
@@ -33,8 +33,8 @@
 {% block sidebar %}
   <h3>Liste des conférences</h3>
   {% for b in batches %}
+      <ul><a href="#batch_{{b.id}}">{{b.theme}}</a></ul>
     {% if b.published and b.interne == False %}
-      <ul><a href="#{{b.id|lower|cut:" "}}">{{b.theme}}</a></ul>
     {% endif %}
   {% endfor %}
 {% endblock %}
