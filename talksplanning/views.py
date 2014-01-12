@@ -13,7 +13,9 @@ def home(request):
 
     batches = Batch.objects.filter(published=True)
 
-    return render_to_response('home.html', {'batches':batches})
+    return render_to_response('home.html',
+                              {'batches':batches},
+                             context_instance=RequestContext(request))
 
 def batch_detail(request, id):
     """ Details à propos d'un batch """
