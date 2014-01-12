@@ -6,9 +6,9 @@
 
   <h1>{{batch}}</h1>
 
-  <p>{{batch.description}}</p>
+  <p>{{batch.description|restructuredtext}}</p>
 
-  <p>Organisé par :  {{batch.responsable|upper}} {% if talk.speaker.haum %}(Haum){% endif %}</p>
+  <p>Organisé par :  {{batch.responsable|capfirst}} {% if talk.speaker.haum %}(Haum){% endif %}</p>
 
   <h3>Assister à la conférence</h3>
 
@@ -21,7 +21,7 @@
 
   <ul>
     {% for p in batch.participants.all %}
-    <li> Auditeur(s) inscrit(s) : {{p.pseudo}}</li>
+    <li> Auditeur(s) inscrit(s) : {{p.pseudo|capfirst}}</li>
     {% empty %}
     <li>Aucun auditeur inscrit pour l'instant... Vous peut être ?</li>
     {% endfor %}
@@ -40,9 +40,9 @@
     <div id="#{{t.titre|lower|cut:" "}}">
       <h4>Talk n°{{forloop.counter}} : {{t.titre}}</h4>
       <ul>
-        <li> Speaker : {{t.speaker}}
+        <li> Speaker : {{t.speaker|capfirst}}
       </ul>
-      <p>{{t.description}}</p>
+      <p>{{t.description|restructuredtext}}</p>
     </div>
   {% endfor %}
 {% endblock %}
