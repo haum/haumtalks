@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="{{STATIC_URL}}/nature.css" type="text/css" />
   <link rel="stylesheet" href="{{STATIC_URL}}/pygments.css" type="text/css" />
 
+    {% block extraHead %}
+    {% endblock %}
   </head>
   <body>
 	<div style="background-color: #6BA81E; text-align: center; padding: 15px 15px 15px 15px">
@@ -26,7 +28,7 @@
       <div class="bodywrapper">
         <div class="body">
           <div class="section" id="haum-hackerspace-de-l-universite-du-maine">
-			{% block content %}
+            {% block content %}
             {% endblock %}
           </div>
         </div>
