@@ -65,7 +65,7 @@ def talk_form(request, batch_id):
                 context_instance=RequestContext(request))
         else:
             hacker = fH.save()
-            talk = f.save(batch, hacker)
+            talk = fT.save(batch, hacker)
             return HttpResponseRedirect(reverse('batch_detail', args=(batch.id,)))
     else:
         formTalk = TalkProposalForm()
