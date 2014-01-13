@@ -34,7 +34,7 @@ def batch_detail(request, id):
                              context_instance=RequestContext(request))
 
 def batch_form(request, batch_id):
-    """ Formulaire inscription à un talk """
+    """ Formulaire inscription à un batch """
 
     batch = get_object_or_404(Batch, pk=batch_id)
 
@@ -49,7 +49,7 @@ def batch_form(request, batch_id):
         return HttpResponseRedirect(reverse('batch_detail', args=(batch.id,)))
 
 def talk_form(request, batch_id):
-    """ Formulaire inscription à un talk """
+    """ Formulaire proposition de talk pour un batch """
 
     batch = get_object_or_404(Batch, pk=batch_id)
 
@@ -76,11 +76,4 @@ def talk_form(request, batch_id):
              'formTalk': formTalk,
              'formHacker': formHacker},
             context_instance=RequestContext(request))
-
-
-def add_talk(request, batch_id):
-    """ Ajoute un talk à un batch """
-    pass
-
-
 
