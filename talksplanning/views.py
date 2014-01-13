@@ -11,7 +11,7 @@ from talksplanning.forms import TalkProposalForm, ListenerForm, HackerForm
 def home(request):
     """ Homepage """
 
-    batches = Batch.objects.filter(published=True)
+    batches = Batch.objects.filter(published=True, interne=False)
 
     return render_to_response('home.html',
                               {'batches':batches},
