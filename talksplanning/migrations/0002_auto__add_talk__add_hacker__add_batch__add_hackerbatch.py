@@ -12,8 +12,8 @@ class Migration(SchemaMigration):
         db.create_table(u'talksplanning_talk', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('titre', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('description', self.gf('django.db.models.fields.TextField')()),
             ('url', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
+            ('description', self.gf('django.db.models.fields.TextField')()),
             ('approved', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('speaker', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['talksplanning.Hacker'])),
             ('batch', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['talksplanning.Batch'])),
@@ -38,6 +38,7 @@ class Migration(SchemaMigration):
             ('published', self.gf('django.db.models.fields.BooleanField')(default=True)),
             ('interne', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('responsable', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+            ('programme', self.gf('django.db.models.fields.BooleanField')(default=True)),
         ))
         db.send_create_signal(u'talksplanning', ['Batch'])
 
@@ -110,6 +111,7 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'interne': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'participants': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['talksplanning.Hacker']", 'through': u"orm['talksplanning.HackerBatch']", 'symmetrical': 'False'}),
+            'programme': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'published': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'responsable': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"}),
             'theme': ('django.db.models.fields.CharField', [], {'max_length': '200'})

@@ -15,6 +15,7 @@ class Batch(models.Model):
 
     responsable = models.ForeignKey(User)
     participants = models.ManyToManyField('Hacker', through='HackerBatch')
+    programme = models.BooleanField('Programmé', default=True)
 
     # internal help texts
     published.help_text = "Un batch peut exister mais ne plus être publié"

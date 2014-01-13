@@ -5,7 +5,7 @@ from talksplanning.models import Batch, Talk, Hacker
 
 class BatchAdmin(admin.ModelAdmin):
 
-    list_display = ('theme', 'responsable', 'date', 'published', 'interne')
+    list_display = ('theme', 'responsable', 'date', 'published', 'interne', 'programme')
     list_filter = ('published', 'interne', 'responsable')
     list_editable = ('published', 'interne')
     ordering = ['date']
@@ -13,7 +13,7 @@ class BatchAdmin(admin.ModelAdmin):
     fieldsets = (
         (None,      {'fields': ['theme', 'responsable', 'description']}),
         ('Date',    {'fields': ['date']}),
-        ('Visibilité', {'fields': ['published', 'interne']})
+        ('Visibilité', {'fields': ['published', 'interne', 'programme']})
     )
 
 class HackerAdmin(admin.ModelAdmin):

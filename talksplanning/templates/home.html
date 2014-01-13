@@ -19,7 +19,11 @@
         <h4><a href={% url 'batch_detail' b.id %}>{{b.theme}}</a></h4>
         <p>{{b.description}}</p>
         <ul>
-          <li> {{b.date|date:"\L\e l j F à G\h"}}{% ifnotequal b.date.minute 0%}{{b.date|date:"i"}}{% endifnotequal %}
+          {% if b.programme %}
+            <li> {{b.date|date:"\L\e l j F à G\h"}}{% ifnotequal b.date.minute 0%}{{b.date|date:"i"}}{% endifnotequal %}
+          {% else %}
+            <li> La date n'est pas encore fixée</li>
+          {% endif %}
           <li> Organisateur : {{b.responsable|capfirst}}
           {% if b.talk_set.all %}<li> Talks : {{b.talk_set.all|join:", "}}{% endif %}
         </ul>
