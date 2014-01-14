@@ -19,13 +19,18 @@
 	  <input type=submit value="S'inscrire"/>
   </form>
 
-  <ul>
-    {% for p in batch.participants.all %}
-    <li> Auditeur(s) inscrit(s) : {{p.pseudo|capfirst}}</li>
-    {% empty %}
-    <li>Aucun auditeur inscrit pour l'instant... Vous peut être ?</li>
-    {% endfor %}
-  </ul>
+  {% with p=batch.participants.all %}
+    {% if p %}
+    <p>Auditeur(s) inscrit(s) :</p>
+    <ul>
+      {% for p in batch.participants.all %}
+      <li>{{p.pseudo|capfirst}}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>Personne ne s'est inscrit pour le moment... soyez le premier !</p>
+    {% endif %}
+  {% endwith %}
 
   <h3>TALKS associés à cette conférence</h3>
 
