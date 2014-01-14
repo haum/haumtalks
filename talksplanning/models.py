@@ -20,6 +20,7 @@ class Batch(models.Model):
     # internal help texts
     published.help_text = "Un batch peut exister mais ne plus être publié"
     interne.help_text = "Si coché, le batch n'apparait pas sur les pages publiques (il est réservé aux membres du HAUM)"
+    programme.help_text = "Si coché alors le batch est considéré \"Programmé\" (sa date est connue et affichée)"
 
     def __unicode__(self):
         return self.theme
