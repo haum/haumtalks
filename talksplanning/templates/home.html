@@ -2,7 +2,7 @@
 
 {% block content %}
 
-  <h1>HaumTalks - Conférences Libres du HAUM</h1>
+  <h1>HaumTalks - Site des conférences libres du HAUM</h1>
 
   <h2>Késako ?</h2>
   <p>
@@ -12,14 +12,14 @@
     Pour exposer son sujet, chaque orateur dispose de 10 à 15 min (max). <br />
     Chaque conférence se terminera par un échange entre intervenants et auditeurs, quant aux sujets abordés durant la session. <br /><br />
 
-  <h2>Conférences libres à venir</h2>
+  <h2>Liste des conférences</h2>
 
     Pour chacune d'elles, vous pouvez intervenir en proposant un exposé sur le sujet de votre choix en lien avec la thématique, ou simplement vous inscrire pour y assister.
   </p>
 
   {% for b in batches %}
       <div id="#batch_{{b.id}}">
-        <h4><a href={% url 'batch_detail' b.id %}>{{b.theme}}</a></h4>
+        <h4> > <a href={% url 'batch_detail' b.id %}>{{b.theme}}</a></h4>
         <p>{{b.description}}</p>
         <ul>
           {% if b.programme %}
@@ -35,7 +35,7 @@
 {% endblock %}
 
 {% block sidebar %}
-  <h3>Liste des conférences</h3>
+  <h2>Liste des conférences</h2>
   {% for b in batches %}
       <ul><a href="#batch_{{b.id}}">{{b.theme}}</a></ul>
   {% endfor %}

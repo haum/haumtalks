@@ -1,5 +1,5 @@
 {% if batches %}
-<h3>Liste des conférences</h3>
+<h2>Conférences</h2>
 <ul>
 	{% for b in batches %}
 	<li><a href="{% url 'batch_detail' b.id %}">{{b}}</a></li>
