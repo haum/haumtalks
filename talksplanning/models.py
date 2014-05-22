@@ -85,3 +85,6 @@ class HackerBatch(models.Model):
 
     batch = models.ForeignKey('Batch')
     hacker = models.ForeignKey('Hacker')
+
+    def __unicode__(self):
+        return self.hacker.__unicode__()+' <-> '+self.batch.__unicode__()
