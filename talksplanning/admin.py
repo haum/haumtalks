@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 from django.contrib import admin
 
-from talksplanning.models import Batch, Talk, Hacker
+from talksplanning.models import Batch, Talk, Hacker, HackerBatch
 
 class BatchAdmin(admin.ModelAdmin):
 
@@ -31,3 +31,4 @@ class TalkAdmin(admin.ModelAdmin):
 admin.site.register(Batch, BatchAdmin)
 admin.site.register(Hacker, HackerAdmin)
 admin.site.register(Talk, TalkAdmin)
+admin.site.register(HackerBatch)
