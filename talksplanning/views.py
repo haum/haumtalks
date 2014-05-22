@@ -22,7 +22,11 @@ def batch_detail(request, id):
 
     batch = get_object_or_404(Batch, pk=id)
     talks = batch.talk_set.filter(approved=True)
+
+    # hack en attendant mieux
     auditeurs = batch.participants.filter(hackerbatch__auditeur=True)
+    auditeurs = list(set(map(lambda _:_.pseudo, auditeurs)))
+
     form = ListenerForm()
 
     return render_to_response('batch_detail.html',
