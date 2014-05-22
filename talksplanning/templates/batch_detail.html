@@ -44,7 +44,9 @@
         <li> Speaker : {{t.speaker|capfirst}}
       </ul>
       <p>{{t.description|restructuredtext}}</p>
-      <p class="more"><a href="{{t.url}}">En savoir plus >></a></p>
+      {% if t.url %}
+        <p class="more"><a href="{{t.url}}">En savoir plus >></a></p>
+      {% endif %}
     </div>
   {% endfor %}
 {% endblock %}
