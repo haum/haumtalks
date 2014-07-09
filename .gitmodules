@@ -1,0 +1,3 @@
+[submodule "talksplanning"]
+	path = talksplanning
+	url = https://github.com/haum/talksplanning
