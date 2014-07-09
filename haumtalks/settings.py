@@ -129,6 +129,7 @@ TP_APPS = (
 
 LOCAL_APPS = (
     'talksplanning',
+    'haumtalks',
 )
 
 INSTALLED_APPS = DEFAULT_APPS + TP_APPS + LOCAL_APPS

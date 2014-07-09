@@ -111,6 +111,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     '/home/matael/workspace/hackerspace/haumtalks/talksplanning/templates',
+    '/home/matael/workspace/hackerspace/haumtalks/templates',
 )
 
 DEFAULT_APPS = (
@@ -129,6 +130,7 @@ TP_APPS = (
 
 LOCAL_APPS = (
     'talksplanning',
+    'haumtalks',
 )
 
 INSTALLED_APPS = DEFAULT_APPS + TP_APPS + LOCAL_APPS
